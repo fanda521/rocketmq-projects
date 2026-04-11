@@ -1,25 +1,29 @@
-package com.example.jeffrey.rocketmqstudyone.service.consumer.confirm;
+package com.example.jeffrey.rocketmqstudyone.service.consumer.offset;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
+import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
+import org.apache.rocketmq.spring.core.RocketMQListener;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
-/**
- * 原生 RocketMQ 消费者
- * 纯手动 ACK，main 方法直接跑
- */
-public class ConsumerConfirmManualAck {
+public class ConsumerOffset {
 
     public static void main(String[] args) throws Exception {
         // 1. 创建消费者
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("consumer-group-confirm-manual-ack-test");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("consumer-group-offset-test");
         consumer.setNamesrvAddr("127.0.0.1:9876");
 
         // 2. 订阅 Topic
-        consumer.subscribe("topic-concurrently-manual-ack", "*");
+        consumer.subscribe("topic-consumer-offset", "*");
+
+        //ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET 从投开始
+        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
 
         // 3. 注册监听器 → 手动确认核心在这里
         consumer.registerMessageListener(new MessageListenerConcurrently() {

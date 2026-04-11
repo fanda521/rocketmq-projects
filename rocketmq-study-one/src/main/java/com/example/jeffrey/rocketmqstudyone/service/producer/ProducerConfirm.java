@@ -1,4 +1,4 @@
-package com.example.jeffrey.rocketmqstudyone.service.producer.confirm;
+package com.example.jeffrey.rocketmqstudyone.service.producer;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
