@@ -10,4 +10,5 @@ public class RocketMQConstant {
     public static final String TOPIC_GLOBAL = "SINGLE_QUEUE_FIFO_TOPIC_GLOBAL";
     public static final String PRODUCER_GROUP_GLOBAL = "SINGLE_QUEUE_PRODUCER_GROUP_GLOBAL";
     public static final String CONSUMER_GROUP_GLOBAL = "SINGLE_QUEUE_CONSUMER_GROUP_GLOBAL";
+    public static final String CONSUMER_GROUP_GLOBAL_TWO = "SINGLE_QUEUE_CONSUMER_GROUP_GLOBAL_TWO";
 }
